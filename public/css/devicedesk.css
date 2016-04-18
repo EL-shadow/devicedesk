@@ -1,0 +1,130 @@
+body {
+    background-color: #f1f1f1;
+}
+body.admin-page {
+    background-color:#333;
+}
+.main-content {
+    background-color: #fff;
+    border-left: 1px solid #e7e7e7;
+    padding-top: 1px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.top-logo .navbar-brand a {
+    text-decoration: none;
+}
+
+.navbar-top-links li a {
+    min-height: 50px;
+    padding: 15px;
+}
+
+.navbar-top-links li:last-child {
+    margin-right: 15px;
+}
+
+.navbar-top-links .dropdown-menu li a {
+    min-height: 0;
+    padding: 3px 20px;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 550px
+}
+
+/* On small screens, set height to 'auto' for the grid */
+@media screen and (max-width: 767px) {
+    .top-logo {
+        float: left;
+    }
+
+    .top-logo .navbar-brand img {
+        height: 50px;
+        float: right;
+        margin-top: -15px;
+    }
+
+    .navbar-brand-wrap {
+        margin: 0;
+    }
+
+    .navbar-header {
+        float: left;
+    }
+
+    .navbar-toggle {
+        float: left;
+        margin: 8px 0 8px 15px;
+    }
+
+    .navbar-top-links.navbar-right {
+        float: right;
+    }
+
+    .sidenav {
+        clear: both;
+    }
+
+    .navbar-top-links .dropdown-user {
+        left: auto;
+        right: 0;
+    }
+
+    .row.content {
+        height: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .top-logo {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        margin-top: 51px;
+    }
+
+    .navbar-brand-wrap {
+
+        text-align: center;
+    }
+
+    .navbar-brand-wrap .navbar-brand {
+        font-size: 30px;
+        float: none;
+    }
+
+    .navbar-brand-wrap .navbar-brand img {
+        display: inline-block;
+    }
+
+    .sidenav {
+        z-index: 1;
+        position: absolute;
+        margin-top: 255px;
+        left: 0;
+        top: 0;
+    }
+}
+.nav-second-level{
+    border-bottom: 1px solid #999;
+    padding-left: 25px;
+}
+
+.navbar .arrow {
+    float: right;
+}
+
+.navbar .fa.arrow:before {
+    content: "\f104";
+    content: "\f107";
+}
+
+.navbar .active>a>.fa.arrow:before {
+    content: "\f107";
+}

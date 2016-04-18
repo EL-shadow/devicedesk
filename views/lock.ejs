@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include partial/head.ejs %>
+    <script src="/js/vendor/jsqrcode-combined.min.js"></script>
+    <script src="/js/vendor/html5-qrcode.min.js"></script>
+    <script src="/js/qrscan.js"></script>
+</head>
+<body>
+
+<% include partial/menu.ejs %>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="main-content col-sm-9 col-sm-offset-3">
+            <h1 class="page-header">QR Scan</h1>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="well">
+                        <h4>Users</h4>
+                        <p>1 Million</p>
+                        <div id="error"></div>
+                        <div id="reader" style="width:300px;height:250px">
+                        </div>
+                        <p id="read"></p>
+                        <audio preload="auto" id="beep">
+                            <source src="/sound/beep.ogg" type="audio/ogg">
+                            <source src="/sound/beep.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include partial/foot.ejs %>
