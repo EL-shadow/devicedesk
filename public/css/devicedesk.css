@@ -94,9 +94,14 @@ body.admin-page {
         text-align: center;
     }
 
-    .navbar-brand-wrap .navbar-brand {
+    .navbar-header .navbar-brand-wrap .navbar-brand {
         font-size: 30px;
         float: none;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        line-height:1.1em;
     }
 
     .navbar-brand-wrap .navbar-brand img {
