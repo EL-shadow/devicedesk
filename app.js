@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var lock = require('./routes/lock');
+var unlock = require('./routes/unlock');
 var login = require('./routes/login');
 var users = require('./routes/users');
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/lock', lock);
+app.use('/unlock', unlock);
 app.use('/users', users);
 app.use('/login', login);
 
