@@ -23,45 +23,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <% userList.forEach(function(user) { %>
                         <tr>
-                            <td>Арямнов</td>
-                            <td>Евгений</td>
-                            <td>aryamnov@gruppa501.com</td>
+                            <td><%= user.lastname %></td>
+                            <td><%= user.firstname %></td>
+                            <td><%= user.email %></td>
                             <td>
-                                <span class="fa fa-pencil-square-o "></span>
-                                <span class="fa fa-user-times"></span>
+                                <span data-user-id="<%= user._id %>" class="fa fa-pencil-square-o"></span>
+                                <span data-user-id="<%= user._id %>" class="fa fa-user-times"></span>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Горбунов</td>
-                            <td>Андрей</td>
-                            <td>gorbunove@gruppa501.com</td>
-                        </tr>
-                        <tr>
-                            <td>Потемкин</td>
-                            <td>Иван</td>
-                            <td>potemkin@gruppa501.com</td>
-                        </tr>
-                        <tr>
-                            <td>Тимчур</td>
-                            <td>Иван</td>
-                            <td>timchur@gruppa501.com</td>
-                        </tr>
-                        <tr>
-                            <td>Курталиев</td>
-                            <td>Эльнур</td>
-                            <td>kurtaliev@gruppa501.com</td>
-                        </tr>
-                        <tr>
-                            <td>Эгамназаров</td>
-                            <td>Алим</td>
-                            <td>egamnazarov@gruppa501.com</td>
-                        </tr>
-                        <tr>
-                            <td>Юрченко</td>
-                            <td>Георгий</td>
-                            <td>jurchenko@gruppa501.com</td>
-                        </tr>
+                        <% }); %>
                         </tbody>
                     </table>
                 </div>
