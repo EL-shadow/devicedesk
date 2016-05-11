@@ -18,6 +18,10 @@ body.admin-page {
     text-decoration: none;
 }
 
+.navbar-top-links li {
+    display: inline-block;
+}
+
 .navbar-top-links li a {
     min-height: 50px;
     padding: 15px;
@@ -25,6 +29,10 @@ body.admin-page {
 
 .navbar-top-links li:last-child {
     margin-right: 15px;
+}
+
+.navbar-top-links .dropdown-menu li {
+    display: block;
 }
 
 .navbar-top-links .dropdown-menu li a {
