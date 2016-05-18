@@ -11,29 +11,50 @@
     <div class="row content">
         <div class="main-content col-sm-9 col-sm-offset-3">
             <h1 class="page-header">Dashboard</h1>
-            <div class="panel panel-default">
+            <div class="panel panel-default panel-actions">
                 <div class="panel-heading">Действия</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-3">
-                            <div class="well">
-                                <h4>Занято мной</h4>
-                                <p>0</p>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-unlock-alt fa-4x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="pull-left">Занято мной</span>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="well">
-                                <a class="btn btn-primary btn-lg" href="/lock/"><i class="fa fa-lock fa-fw"></i> Занять</a>
+                                <br>
+                                <a class="btn btn-warning btn-lg" href="/lock/"><i class="fa fa-lock fa-fw"></i> Занять</a>
+                                <br>
+                                <br>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="well">
+                                <br>
                                 <a class="btn btn-success btn-lg" href="/unlock/"><i class="fa fa-unlock fa-fw"></i> Сдать</a>
+                                <br>
+                                <br>
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-lg-3 col-md-6">
                             <div class="well">
+                                <br>
                                 <a class="btn btn-info btn-lg" href="/find/"><i class="fa fa-search fa-fw"></i> Найти</a>
+                                <br>
+                                <br>
                             </div>
                         </div>
                     </div>
@@ -43,22 +64,58 @@
                 <div class="panel-heading">Устройства</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="well">
-                                <h4>В хранилище</h4>
-                                <p>34</p>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-archive fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">34</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="pull-left">Всего в хранилище</span>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="well">
-                                <h4>Свободные</h4>
-                                <p>34</p>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-check-circle-o fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">34</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="pull-left">Свободные</span>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="well">
-                                <h4>Занятые</h4>
-                                <p>0</p>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="panel panel-yellow">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-ban fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge">0</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="pull-left">Занятые</span>
+                                    <div class="clearfix"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
