@@ -35,6 +35,7 @@ function requireModels(callback) {
 function createUsers(callback) {
 
     var users = [
+        {email: 'admin@gruppa501.com', firstname: 'admin', password: 'admin', permissions:{admin: true}},
         {email: 'aryamnov@gruppa501.com', firstname: 'Евгений', lastname: 'Арямнов', password: 'EJsNhZwA'},
         {email: 'gorbunove@gruppa501.com', firstname: 'Андрей', lastname: 'Горбунов', password: 'gGFYMcLP'},
         {email: 'potemkin@gruppa501.com', firstname: 'Иван', lastname: 'Потемкин', password: 'cHgHktUa'},

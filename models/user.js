@@ -21,6 +21,19 @@ var schema = new Schema({
     lastname: {
         type: String
     },
+    permissions: {
+        admin: {
+            type: String,
+            default: null
+        },
+        deviceAccess: {
+            all: {
+                type: Boolean,
+                default: true
+            },
+            list: [Schema.Types.ObjectId]
+        }
+    },
     hashedPassword: {
         type: String,
         required: true
@@ -52,7 +65,7 @@ schema.methods.checkPassword = function(password) {
     return this.encryptPassword(password) === this.hashedPassword;
 };
 
-schema.statics.authorize = function(email, password, callback) {
+schema.statics.authorize = function(email, password, accessAdmin, callback) {
     var User = this;
 
     async.waterfall([
@@ -61,6 +74,9 @@ schema.statics.authorize = function(email, password, callback) {
         },
         function (user, callback) {
             if (user && user.checkPassword(password)) {
+                if (accessAdmin && !user.permissions.admin) {
+                    return callback(new AuthError("Access Denied - Нет полномочий для входа"));
+                }
                 callback(null, user);
             } else {
                 callback(new AuthError("Логин или Пароль неверен"));

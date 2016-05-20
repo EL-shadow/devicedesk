@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var User = require('models/user').User;
-var AuthError = require('models/user').AuthError;
-var HttpError = require('error').HttpError;
 
 var checkAuth = require('middleware/checkAuth');
 
@@ -19,25 +16,7 @@ router.get('/login', function (req, res, next) {
     });
 });
 
-router.post('/login', function (req, res, next) {
-    var email = req.body.email;
-    var password = req.body.password;
-
-    User.authorize(email, password, function(err, user) {
-        if (err) {
-            if (err instanceof AuthError) {
-                return res.render('login', {
-                    title: 'DeviceDesk - Система контроля доступа к устройствам | Вход',
-                    message: 'Ошибка: Логин или пароль неверен.'
-                });
-            } else {
-                return next(err);
-            }
-        }
-        req.session.user = user._id;
-        return res.redirect('/');
-    });
-});
+router.post('/login', require('./login'));
 
 router.post('/logout', function (req, res, next) {
     req.session.destroy();

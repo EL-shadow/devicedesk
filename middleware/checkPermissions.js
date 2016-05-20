@@ -4,10 +4,9 @@
 //var HttpError = require('error').HttpError;
 
 module.exports = function(req, res, next) {
-    if (!req.session.user) {
+    if (!req.user || !req.user.permissions.admin) {
         req.session.destroy();
-        return res.redirect(req.baseUrl + '/login');
-        //return next(new HttpError(401, "Вы не авторизованы"));
+        return res.redirect('/admin/login');
     }
     next();
 };
