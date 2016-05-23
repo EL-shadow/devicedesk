@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include partial/head.ejs %>
+    <script src="/js/vendor/bootbox.min.js"></script>
+    <script>
+        $(function () {
+            $('.get-qr').on('click', function () {
+                var w = 300;
+                var h = 200;
+                var lx = Math.round((screen.width - w) / 2);
+                var ty = Math.round((screen.height - h) / 2);
+                window.open(this.href, '', 'width=' + w + ', height=' + h + ', top=' + ty + ', left=' + lx + ', toolbar=0, location=0, menubar=0, resizable=0, status=0, titlebar=0, scrollbars=no');
+                return false;
+            });
+            $('.remove-device').on('click', function () {
+                var $this = $(this);
+                bootbox.confirm("Вы уверены что хотите удалить?", function(result) {
+                    if (result) {
+                        $this.removeClass('fa-trash-o').addClass('fa-spinner');
+                        $.ajax({
+                            type: "DELETE",
+                            url: '/admin/device/' + $this.attr('data-device-id'),
+                            success: function(response) {
+                                $this.parents('tr').remove();
+                            }
+                        });
+                    }
+                });
+            })
+        });
+    </script>
+</head>
+<body class="admin-page">
+
+<% include partial/menu.ejs %>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="main-content col-sm-9 col-sm-offset-3">
+            <h1 class="page-header">Устройства <a href="/admin/device/add"><span class="fa fa-plus-square"></span></a></h1>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-condensed table-hover table-responsive">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Тип</th>
+                            <th>Модель</th>
+                            <th>Описание</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% deviceList.forEach(function(device) { %>
+                        <tr>
+                            <td><%= device.uniqId %></td>
+                            <td><%= device.deviceType %></td>
+                            <td><%= device.model %></td>
+                            <td><%= device.name %></td>
+                            <td>
+                                <span data-device-id="<%= device._id %>" class="fa fa-pencil-square-o"></span>
+
+                                <a class="get-qr" href="/admin/device/<%= device._id %>/qr"><span class="fa fa-qrcode "></span></a>
+                                |
+                                <span data-device-id="<%= device._id %>" class="remove-device fa fa-trash-o"></span>
+                            </td>
+                        </tr>
+                        <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/css/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/devicedesk.css">
+
+    <script src="/js/vendor/jquery.min.js"></script>
+    <script src="/js/devicedesk.js"></script>
+    <script>
+        $(function () {
+            $('#cloneSticker').on('click', function () {
+                $(this).toggleClass('active');
+                var $qrSticker = $('.qr-sticker');
+                if (printQr.sticker === 1) {
+                    $qrSticker.after($qrSticker.clone());
+                    printQr.sticker++;
+                } else {
+                    $qrSticker.first().remove();
+                    printQr.sticker = 1;
+                }
+            });
+            $('#printSticker').on('click', function () {
+                window.print();
+                window.close();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="main-content col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="print-tool">
+                        <span id="printSticker"><span class="fa fa-print"></span> Print </span> |
+                        <span id="cloneSticker" class="clone-button"><span class="fa fa-clone"></span> Duplicate sticker</span>
+                    </div>
+                    <div class="stickers">
+                        <i class="fa fa-scissors" aria-hidden="true"></i>
+                        <div class="qr-sticker" style="">
+                            <%- svg %>
+                            <br>
+                            <%= uniqId%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

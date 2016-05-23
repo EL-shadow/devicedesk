@@ -210,3 +210,58 @@ body.admin-page {
 .panel-actions .well{
     text-align: center;
 }
+
+.stickers i {
+    display: none;
+}
+
+.print-tool > span{
+    cursor: pointer;
+}
+
+.qr-sticker {
+    display: inline-block;
+    margin-right: 1cm;
+    width: 30mm;
+    text-align: center;
+    word-wrap: break-word;
+    font-size: 12px;
+}
+
+.qr-sticker:last-child {
+    margin: 0;
+}
+
+.clone-button {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.clone-button.active {
+    color: #1b6d85;
+}
+
+@media print {
+    .print-tool {
+        display: none;
+    }
+
+    .stickers {
+        position: relative;
+        display: inline-block;
+        padding: 5mm;
+        border: 1px dashed #000;
+    }
+
+    .stickers i {
+        position: absolute;
+        right: -7px;
+        bottom: 10px;
+        display: block;
+        transform: rotate(-90deg);
+    }
+}
+
+.remove-device {
+    cursor: pointer;
+}

@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var User = require('models/user').User;
+var Device = require('models/device').Device;
+var qr = require('qr-image');
 
 var checkAuth = require('middleware/checkAuth');
 var checkPermissions = require('middleware/checkPermissions');
@@ -40,6 +42,73 @@ router.delete('/user/:id', checkAuth, checkPermissions, function (req, res, next
             menu: 'users',
             userList: users
         });
+    })
+});
+
+
+router.get('/devices', checkAuth, checkPermissions, function (req, res, next) {
+    Device.find({ }, function(err, devices) {
+        if (err) return next(err);
+        res.render('admin/devices', {
+            title: 'DeviceDesk - Устройства',
+            menu: 'devices',
+            deviceList: devices
+        });
+    })
+});
+
+router.get('/device/add', checkAuth, checkPermissions, function (req, res, next) {
+    res.render('admin/device-add', {
+        title: 'DeviceDesk - Добавление устройства',
+        menu: 'devices',
+        prev: false,
+        message: false
+    });
+});
+router.post('/device/add', checkAuth, checkPermissions, function (req, res, next) {
+    var deviceData = {
+        uniqId: req.body.uniqId,
+        deviceType: req.body.deviceType,
+        model: req.body.model,
+        name: req.body.name
+    };
+
+    Device.find({uniqId: deviceData.uniqId}, function(err, devices) {
+        if (err) return next(err);
+        if (devices.length === 0) {
+            var device = new Device(deviceData);
+            device.save(function (err) {
+                if (err) {return next(err);}
+                return res.redirect('/admin/devices/');
+            })
+        } else {
+            res.render('admin/device-add', {
+                title: 'DeviceDesk - Добавление устройства',
+                menu: 'devices',
+                prev: deviceData,
+                message: 'Ошибка: Введеный ID уже внесен в базу.'
+            });
+        }
+    });
+});
+
+router.get('/device/:id/qr', checkAuth, checkPermissions, function (req, res, next) {
+    Device.findById(req.params.id, function(err, device) {
+        if (err) return next(err);
+        var qrSvg = qr.imageSync(device.uniqId, { type: 'svg', ec_level: 'H'});
+        res.render('admin/device-qr', {
+            title: 'DeviceDesk - Печать QR',
+            uniqId: device.uniqId,
+            svg: qrSvg
+        });
+    })
+});
+
+router.delete('/device/:id', checkAuth, checkPermissions, function (req, res, next) {
+    Device.findById(req.params.id, function(err, device) {
+        if (err) return next(err);
+        device.remove();
+        return res.sendStatus(200);
     })
 });
 
