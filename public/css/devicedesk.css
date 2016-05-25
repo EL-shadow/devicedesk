@@ -211,7 +211,13 @@ body.admin-page {
     text-align: center;
 }
 
-.stickers i {
+.sticker {
+    display: inline-block;
+    margin-right: 0.5cm;
+    vertical-align: top;
+}
+
+.sticker i {
     display: none;
 }
 
@@ -225,7 +231,7 @@ body.admin-page {
     width: 30mm;
     text-align: center;
     word-wrap: break-word;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .qr-sticker:last-child {
@@ -246,14 +252,15 @@ body.admin-page {
         display: none;
     }
 
-    .stickers {
+    .sticker {
         position: relative;
         display: inline-block;
         padding: 5mm;
         border: 1px dashed #000;
+        margin-right: 0;
     }
 
-    .stickers i {
+    .sticker i {
         position: absolute;
         right: -7px;
         bottom: 10px;

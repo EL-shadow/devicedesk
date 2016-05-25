@@ -11,19 +11,21 @@
     <link rel="stylesheet" type="text/css" href="/css/devicedesk.css">
 
     <script src="/js/vendor/jquery.min.js"></script>
-    <script src="/js/devicedesk.js"></script>
     <script>
         $(function () {
-            $('#cloneSticker').on('click', function () {
-                $(this).toggleClass('active');
-                var $qrSticker = $('.qr-sticker');
-                if (printQr.sticker === 1) {
+            $('.clone-button').on('click', function () {
+                var $this = $(this);
+                var state = parseInt($this.attr('data-stickers'));
+                $this.toggleClass('active');
+                var $qrSticker = $this.parents('.sticker').find('.qr-sticker');
+                if (state === 1) {
                     $qrSticker.after($qrSticker.clone());
-                    printQr.sticker++;
+                    state++;
                 } else {
                     $qrSticker.first().remove();
-                    printQr.sticker = 1;
+                    state = 1;
                 }
+                $this.attr('data-stickers', state);
             });
             $('#printSticker').on('click', function () {
                 window.print();
@@ -40,17 +42,23 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="print-tool">
-                        <span id="printSticker"><span class="fa fa-print"></span> Print </span> |
-                        <span id="cloneSticker" class="clone-button"><span class="fa fa-clone"></span> Duplicate sticker</span>
+                        <span id="printSticker"><span class="fa fa-print"></span> Print </span>
+                        <br>
                     </div>
-                    <div class="stickers">
+
+                    <% qrList.forEach(function (qr) { %>
+                    <div class="sticker">
+                        <div class="print-tool">
+                            <span class="clone-button" data-stickers="1"><span class="fa fa-clone"></span> Duplicate sticker</span>
+                        </div>
                         <i class="fa fa-scissors" aria-hidden="true"></i>
                         <div class="qr-sticker" style="">
-                            <%- svg %>
+                            <%- qr.svg %>
                             <br>
-                            <%= uniqId%>
+                            <%= qr.uniqId%>
                         </div>
                     </div>
+                    <% }); %>
                 </div>
             </div>
         </div>

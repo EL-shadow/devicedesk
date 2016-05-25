@@ -79,6 +79,7 @@ function createDevices(callback) {
         {uniqId: 'MAC D023DBA6D637', deviceType: 'смартфон', model: 'iPhone 6'},
         {uniqId: 'IMEI 012938002938000', deviceType: 'смартфон', model: 'iPhone 6 Plus'},
         {uniqId: 'IMEI 013039003900060', deviceType: 'смартфон', model: 'iPhone 6s'},
+        {uniqId: 'Serial J7P3D7P3DTD1', deviceType: 'смартфон', model: 'iPhone SE'},
         {deviceType: 'кабель', model: 'usb-ligtning (iPhone)'},
         {deviceType: 'кабель', model: 'usb-iPad'},
         {deviceType: 'зарядка', model: 'Samsung', name: '2A, белая'},

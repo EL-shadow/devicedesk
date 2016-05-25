@@ -6,7 +6,7 @@
     <script>
         $(function () {
             $('.get-qr').on('click', function () {
-                var w = 300;
+                var w = 350;
                 var h = 200;
                 var lx = Math.round((screen.width - w) / 2);
                 var ty = Math.round((screen.height - h) / 2);
@@ -27,7 +27,24 @@
                         });
                     }
                 });
-            })
+            });
+            $('#getAllQrs').on('submit', function () {
+                var checked = '';
+                $('.batch-print:checked').each(function () {
+                    checked += $(this).attr('data-uniq-id') + ';';
+                });
+                if (checked) {
+                    checked = checked.slice(0, -1);
+                    $('#devicesUniqId').val(checked);
+                } else {
+                    bootbox.alert('Выберите хотя бы одно устройство для печати QR кода!');
+                    return false;
+                }
+            });
+            $('#selectAll').on('click', function () {
+                var state = $(this).prop('checked');
+                $('.batch-print').prop('checked', state);
+            });
         });
     </script>
 </head>
@@ -44,6 +61,7 @@
                     <table class="table table-condensed table-hover table-responsive">
                         <thead>
                         <tr>
+                            <th></th>
                             <th>ID</th>
                             <th>Тип</th>
                             <th>Модель</th>
@@ -54,6 +72,7 @@
                         <tbody>
                         <% deviceList.forEach(function(device) { %>
                         <tr>
+                            <td><input title="Выбрать для печати" type="checkbox" class="batch-print" data-uniq-id="<%= device.uniqId %>"></td>
                             <td><%= device.uniqId %></td>
                             <td><%= device.deviceType %></td>
                             <td><%= device.model %></td>
@@ -67,6 +86,17 @@
                             </td>
                         </tr>
                         <% }); %>
+                        <tr>
+                            <td><input id="selectAll" title="Выбрать все" type="checkbox"></td>
+                            <td colspan="5">
+                                <form action="/admin/devices/qr" method="post" target="_blank" id="getAllQrs">
+                                    <input id="devicesUniqId" name="devicesUniqId" type="hidden" value="">
+                                    <button type="submit">
+                                        <span class="fa fa-qrcode fa-3x"></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

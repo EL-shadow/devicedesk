@@ -11,10 +11,3 @@ $(function() {
         }
     });
 });
-
-var printQr = {
-    sticker: 1,
-    switchDouble: function () {
-        
-    }
-}

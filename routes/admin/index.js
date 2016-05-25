@@ -98,10 +98,30 @@ router.get('/device/:id/qr', checkAuth, checkPermissions, function (req, res, ne
         var qrSvg = qr.imageSync(device.uniqId, { type: 'svg', ec_level: 'H'});
         res.render('admin/device-qr', {
             title: 'DeviceDesk - Печать QR',
-            uniqId: device.uniqId,
-            svg: qrSvg
+            qrList: [{
+                uniqId: device.uniqId,
+                svg: qrSvg
+            }]
         });
     })
+});
+
+router.post('/devices/qr', checkAuth, checkPermissions, function (req, res, next) {
+    var uniqIdList = req.body.devicesUniqId;
+    var qrList = [];
+    if (uniqIdList) {
+        uniqIdList = uniqIdList.split(';');
+        uniqIdList.forEach(function (id) {
+            qrList.push({
+                uniqId: id,
+                svg: qr.imageSync(id, { type: 'svg', ec_level: 'H'})
+            });
+        });
+    }
+    res.render('admin/device-qr', {
+        title: 'DeviceDesk - Печать QR',
+        qrList: qrList
+    });
 });
 
 router.delete('/device/:id', checkAuth, checkPermissions, function (req, res, next) {
