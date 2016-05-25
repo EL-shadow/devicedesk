@@ -5,7 +5,7 @@
 var qrRead = {
     prev: null,
     successMessage: function(response) {
-        var mess = this.page === 'lock' ? 'Вы заняли' : 'Устройство возвращено.'
+        var mess = qrRead.page === 'lock' ? 'Вы заняли' : 'Устройство возвращено.';
         $('#log').prepend('<p><span class="text-info">' + response + '</span> &ndash; ' + mess + '</p>');
     },
     errorMessage: function (jqXHR) {
