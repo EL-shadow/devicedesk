@@ -5,6 +5,9 @@
     <script src="/js/vendor/jsqrcode-combined.min.js"></script>
     <script src="/js/vendor/html5-qrcode.min.js"></script>
     <script src="/js/qrscan.js"></script>
+    <script>
+        qrRead.page = 'unlock';
+    </script>
 </head>
 <body>
 
@@ -15,10 +18,9 @@
         <div class="main-content col-sm-9 col-sm-offset-3">
             <h1 class="page-header"><span class="glyphicon glyphicon-qrcode"></span> QR Scan &mdash; Сдать устройство</h1>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="well">
-                        <h4>Users</h4>
-                        <p>1 Million</p>
+                        <h4>Поднесите QR код на устройстве к камере</h4>
                         <div id="error"></div>
                         <div id="reader" style="width:300px;height:250px">
                         </div>
@@ -27,6 +29,11 @@
                             <source src="/sound/beep.ogg" type="audio/ogg">
                             <source src="/sound/beep.mp3" type="audio/mpeg">
                         </audio>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="well">
+                        <div id="log"></div>
                     </div>
                 </div>
             </div>
