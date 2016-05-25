@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
+var User = require('models/user').User;
 var Device = require('models/device').Device;
 var useAction = require('models/useAction').useAction;
 
@@ -114,6 +115,60 @@ router.post('/unlock', checkAuth, function (req, res, next) {
             return res.send(device.model);
         });
     });
+});
+
+
+router.get('/find', checkAuth, function (req, res, next) {
+    Device.find({'inUse.start': {$ne: null}}, function (err, devices) {
+        if (err) return next(err);
+
+        res.render('find', {
+            title: 'DeviceDesk | Найти устройство',
+            menu: 'find',
+            devices: devices
+        });
+    });
+    
+});
+
+router.post('/find', checkAuth, function (req, res, next) {
+    var id = req.body.deviceId;
+
+    async.waterfall([
+        function(callback) {
+            Device.findById(id, function (err, device) {
+                if (err) return next(err);
+                callback(null, device)
+            });
+        },
+        function (device, callback) {
+            if (device && device.inUse.user) {
+                User.findById(device.inUse.user, function (err, user) {
+                    if (err) return next(err);
+                    callback(null, {device: device, user: user});
+                });
+            } else {
+                callback(null, {device: device});
+            }
+        },
+        function (data, callback) {
+            var result = {
+                device: {
+                    type: data.device.deviceType,
+                    model: data.device.model,
+                    name: data.device.name,
+                    leaseTime: data.device.inUse.start
+            }};
+            if (data.user) {
+                result.user = {
+                    firstname: data.user.firstname,
+                    lastname: data.user.lastname,
+                    email: data.user.email
+                };
+            }
+            res.send(result);
+        }
+    ], next);
 });
 
 module.exports = router;
