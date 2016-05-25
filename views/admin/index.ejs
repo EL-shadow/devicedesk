@@ -11,64 +11,64 @@
     <div class="row content">
         <div class="main-content col-sm-9 col-sm-offset-3">
             <h1 class="page-header">Администрирование</h1>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="well">
-                        <h4>Users</h4>
-                        <p>1 Million</p>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="well">
-                        <h4>Pages</h4>
-                        <p>100 Million</p>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="well">
-                        <h4>Sessions</h4>
-                        <p>10 Million</p>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="well">
-                        <h4>Bounce</h4>
-                        <p>30%</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="well">
-                        <p>Text</p>
-                        <p>Text</p>
-                        <p>Text</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="well">
-                        <p>Text</p>
-                        <p>Text</p>
-                        <p>Text</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="well">
-                        <p>Text</p>
-                        <p>Text</p>
-                        <p>Text</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="well">
-                        <p>Text</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="well">
-                        <p>Text</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">Информация</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-archive fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge"><%= info.devices %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="pull-left">Устройств всего</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="panel panel-green">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-check-circle-o fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge"><%= info.users %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="pull-left">Пользователей</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="panel panel-yellow">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <i class="fa fa-ban fa-5x"></i>
+                                        </div>
+                                        <div class="col-xs-9 text-right">
+                                            <div class="huge"><%= info.locked %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <span class="pull-left">Занятых устройств</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

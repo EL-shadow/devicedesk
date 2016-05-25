@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var async = require('async');
 var User = require('models/user').User;
 var Device = require('models/device').Device;
 var qr = require('qr-image');
@@ -8,10 +9,35 @@ var checkAuth = require('middleware/checkAuth');
 var checkPermissions = require('middleware/checkPermissions');
 
 router.get('/', checkAuth, checkPermissions, function (req, res, next) {
-    res.render('admin/index', {
-        title: 'DeviceDesk - Система контроля доступа к устройствам | Админка',
-        menu: 'index'
-    });
+    async.waterfall([
+        function(callback) {
+            Device.count({}, function (err, count) {
+                if (err) return callback(err);
+                callback(null, {devices: count});
+            });
+        },
+        function (data, callback) {
+            Device.count({'inUse.start': null}, function (err, count) {
+                if (err) return callback(err);
+                data.locked = data.devices - count;
+                callback(null, data);
+            });
+        },
+        function (data, callback) {
+            User.count({}, function (err, count) {
+                if (err) return callback(err);
+                data.users = count;
+                callback(null, data);
+            });
+        },
+        function (data, callback) {
+            res.render('admin/index', {
+                title: 'DeviceDesk - Система контроля доступа к устройствам | Админка',
+                menu: 'index',
+                info: data
+            });
+        }
+    ], next);
 });
 
 router.get('/login', function (req, res, next) {

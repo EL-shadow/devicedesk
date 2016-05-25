@@ -1,15 +1,42 @@
 var express = require('express');
 var router = express.Router();
+var async = require('async');
 var Device = require('models/device').Device;
 var useAction = require('models/useAction').useAction;
 
 var checkAuth = require('middleware/checkAuth');
 
 router.get('/', checkAuth, function (req, res, next) {
-    res.render('index', {
-        title: 'DeviceDesk - Система контроля доступа к устройствам | Dashboard',
-        menu: 'index'
-    });
+    async.waterfall([
+        function(callback) {
+            Device.count({}, function (err, count) {
+                if (err) return callback(err);
+                callback(null, {all: count});
+            });
+        },
+        function (data, callback) {
+            Device.count({'inUse.start': null}, function (err, count) {
+                if (err) return callback(err);
+                data.unlocked = count;
+                data.locked = data.all - count;
+                callback(null, data);
+            });
+        },
+        function (data, callback) {
+            Device.count({'inUse.user': req.user._id}, function (err, count) {
+                if (err) return callback(err);
+                data.byMe = count;
+                callback(null, data);
+            });
+        },
+        function (data, callback) {
+            res.render('index', {
+                title: 'DeviceDesk - Система контроля доступа к устройствам | Dashboard',
+                menu: 'index',
+                info: data
+            });
+        }
+    ], next);
 });
 
 router.get('/login', function (req, res, next) {
