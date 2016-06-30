@@ -46,6 +46,11 @@ router.get('/login', function (req, res, next) {
     });
 });
 
+router.post('/logout', function (req, res, next) {
+    req.session.destroy();
+    res.redirect('/admin/login');
+});
+
 
 router.post('/login', require('../login'));
 

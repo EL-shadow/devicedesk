@@ -28,7 +28,13 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Журнал</a></li>
                     <li class="divider"></li>
                     -->
-                    <li><a href="/admin/login/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li>
+                        <a href="#/admin/login/" onclick="document.getElementById('adminLogout').submit(); return false;">
+                            <i class="fa fa-sign-out fa-fw"></i> Logout
+                        </a>
+                        <form action="/admin/logout" method="post" id="adminLogout">
+
+                        </form>
                     </li>
                 </ul>
             </li>
