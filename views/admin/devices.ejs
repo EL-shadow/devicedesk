@@ -23,6 +23,10 @@
                             url: '/admin/device/' + $this.attr('data-device-id'),
                             success: function(response) {
                                 $this.parents('tr').remove();
+                            },
+                            error: function (response) {
+                                bootbox.alert(response.responseText);
+                                $this.removeClass('fa-spinner').addClass('fa-trash-o');
                             }
                         });
                     }

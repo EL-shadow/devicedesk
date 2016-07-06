@@ -8,5 +8,10 @@ module.exports = function(req, res, next) {
         req.session.destroy();
         return res.redirect('/admin/login');
     }
+    if (req.user.permissions.demo && req.method !== 'GET') {
+        if (req.originalUrl !== '/admin/devices/qr') {
+            throw new Error('Demo mode: read only');
+        }
+    }
     next();
 };

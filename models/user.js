@@ -23,8 +23,10 @@ var schema = new Schema({
     },
     permissions: {
         admin: {
-            type: String,
-            default: null
+            type: String
+        },
+        demo: {
+            type: Boolean
         },
         deviceAccess: {
             all: {
