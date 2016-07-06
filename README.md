@@ -18,6 +18,19 @@ npm i
 node createDB.js
 npm start
 ```
+## Демо
+Посмотреть веб-приложение в работе можно по адресу http://devicedesk.ellexdev.com
 
+Для администратора
+```
+login: demo@test.com
+password: demo
+```
+
+Для обычного пользователя
+```
+login: test@test.com
+password: test
+```
 
 Проект выполнен для дипломной работы бакалавра.
