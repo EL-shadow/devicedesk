@@ -15,7 +15,7 @@ QR код генерируется админкой при добавлении 
 ## Установка и запуск
 ```
 npm i
-node createDB.js
+NODE_PATH=. node createDB.js
 npm start
 ```
 ## Демо
